@@ -5,12 +5,13 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const methodOverride = require('method-override');
+require('dotenv').config();
 
 const blogRoutes = require('./routes/blogs');
 
 // database
 mongoose.connect(
-	`mongodb+srv://leonfiasco:Kwame123@cluster0.esv8yyj.mongodb.net/?retryWrites=true&w=majority`
+	`mongodb+srv://leonfiasco:${process.env.PASSWORD}@cluster0.esv8yyj.mongodb.net/?retryWrites=true&w=majority`
 );
 
 // middleware
