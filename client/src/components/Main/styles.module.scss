@@ -7,4 +7,18 @@
 	h4 {
 		text-transform: capitalize;
 	}
+
+	#author {
+		span {
+			text-transform: none;
+		}
+		text-transform: capitalize;
+	}
+
+	.btnWrap {
+		margin-bottom: 15px;
+		a:first-child {
+			margin-right: 10px;
+		}
+	}
 }

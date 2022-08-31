@@ -1,9 +1,14 @@
 #container {
 	text-align: center;
-	h1 {
+	h1,
+	p:last-child {
 		text-transform: capitalize;
 	}
-	a {
-		margin-bottom: 15px;
+
+	.btnWrap {
+		margin-bottom: 20px;
+		a {
+			margin-right: 10px;
+		}
 	}
 }

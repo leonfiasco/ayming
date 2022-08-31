@@ -20,10 +20,9 @@ const NewPost = () => {
 		};
 
 		const res = await axios.post('/posts/add-post', newPost);
-		console.log(res);
-		if (res.status === 200) {
+
+		if (res.status === 201) {
 			navigate('/');
-		} else {
 		}
 	};
 	return (

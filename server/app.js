@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const methodOverride = require('method-override');
 
 const blogRoutes = require('./routes/blogs');
 
@@ -18,8 +19,14 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/posts', blogRoutes);
+app.use(methodOverride('_method'));
 
 const port = process.env.PORT || 2402;
-app.listen(port, () => {
-	console.log(`Listening to requests on port: ${port}...`);
-});
+
+if (process.env.NODE_ENV !== 'test') {
+	app.listen(port, () => {
+		console.log(`Listening to requests on port: ${port}...`);
+	});
+}
+
+module.exports = app;

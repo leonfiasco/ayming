@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const FormFields = ({ setTitle, setDescription, setAuthor }) => {
 	return (
 		<>
@@ -30,9 +32,9 @@ const FormFields = ({ setTitle, setDescription, setAuthor }) => {
 					required
 				/>
 			</div>
-			<a href='/' className='btn btn-secondary'>
+			<Link to={'/'} className='btn btn-secondary'>
 				Cancel
-			</a>
+			</Link>
 			<button className='btn btn-primary' type='submit'>
 				Save
 			</button>

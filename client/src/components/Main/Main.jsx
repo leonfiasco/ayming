@@ -19,22 +19,30 @@ const Main = () => {
 		});
 	}, []);
 
-	const renderBlogs = () => {
+	const renderBlogPosts = () => {
 		return (
 			blogs &&
 			blogs.map((post) => {
 				const { _id, title, author, createdAt } = post;
 				const formattedDate = createdAt && moment(createdAt).format('DD/MM/YYYY');
 				return (
-					<Link to={`posts/${_id}`} className='link' key={_id}>
-						<div className={'card mb-4'} id={styles.card}>
-							<div className={'card-body'}>
-								<h4 className={'card-title'}>{title}</h4>
-								<p className={'card-subtitle text-muted mb-2'}>{formattedDate}</p>
-								<p className={'card-text mb-2'}>Written by: {author}</p>
+					<div key={_id} className={'card mb-4'} id={styles.card}>
+						<div className={'card-body'}>
+							<h4 className={'card-title'}>{title}</h4>
+							<p className={'card-subtitle text-muted mb-2'}>{formattedDate}</p>
+							<p className={'card-text mb-2'} id={styles.author}>
+								<span>Written by:</span> {author}
+							</p>
+							<div className={styles.btnWrap}>
+								<Link to={`posts/${_id}`} className='btn btn-primary'>
+									Read More
+								</Link>
+								<Link to={`posts/edit/${_id}`} className='btn btn-info'>
+									Edit
+								</Link>
 							</div>
 						</div>
-					</Link>
+					</div>
 				);
 			})
 		);
@@ -44,11 +52,11 @@ const Main = () => {
 		<main className={'container'}>
 			<div className={styles.pageTitleContainer}>
 				<h1 className={'mb-4'}>Blog Posts</h1>
-				<Link to={'/posts/add-post'}>
-					<a className={'btn btn-success mb-5'}>New Post</a>
+				<Link to={'/posts/add-post'} className={'btn btn-success mb-5'}>
+					New Post
 				</Link>
 			</div>
-			{renderBlogs()}
+			{renderBlogPosts()}
 		</main>
 	);
 };
