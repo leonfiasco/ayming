@@ -4,10 +4,11 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const methodOverride = require('method-override');
+
 require('dotenv').config();
 
 const blogRoutes = require('./routes/blogs');
+const commentRoutes = require('./routes/comments');
 
 // database
 mongoose.connect(
@@ -20,7 +21,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/posts', blogRoutes);
-app.use(methodOverride('_method'));
+app.use('/comments', commentRoutes);
 
 const port = process.env.PORT || 2402;
 

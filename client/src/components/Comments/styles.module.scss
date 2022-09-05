@@ -1,0 +1,23 @@
+.comments {
+	text-align: left;
+}
+
+.form {
+	margin-top: 20px;
+	margin-bottom: 50px;
+	div {
+		display: flex;
+		flex-direction: column;
+		width: 60%;
+		.label {
+			text-align: left;
+		}
+		.input,
+		.textArea {
+			width: 100%;
+			border-radius: 5px;
+			float: left;
+			margin-bottom: 15px;
+		}
+	}
+}

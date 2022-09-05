@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
+import Comments from '../Comments/Comments';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -7,6 +8,7 @@ import styles from './styles.module.scss';
 
 const PostShow = () => {
 	const [post, setPost] = useState({});
+	const [commentList, setCommentList] = useState([]);
 
 	const location = useLocation();
 	const id = location.pathname.split('/')[2];
@@ -20,6 +22,14 @@ const PostShow = () => {
 		}
 	};
 
+	const getComments = async () => {
+		const res = await axios.get('/comments/getComments/' + id);
+
+		if (res.data.success) {
+			setCommentList(res.data.comment);
+		}
+	};
+
 	const deleteBlog = async (id) => {
 		const res = await axios.delete(`/posts/${id}`);
 		if (res.status === 200) {
@@ -29,7 +39,12 @@ const PostShow = () => {
 
 	useEffect(() => {
 		getSinglePost();
+		getComments();
 	}, [id]);
+
+	const updateComment = (newComment) => {
+		setCommentList(commentList.concat(newComment));
+	};
 
 	const formattedDate =
 		post.createdAt && moment(post.createdAt).format('DD/MM/YYYY');
@@ -54,6 +69,12 @@ const PostShow = () => {
 				<p>{post.description && post.description}</p>
 			</article>
 			<p className='font-monospace'>{`Author: ${post.author}`}</p>
+			<br />
+			<Comments
+				postId={id}
+				updateComment={updateComment}
+				commentList={commentList}
+			/>
 		</div>
 	);
 };

@@ -10,6 +10,7 @@ const Main = () => {
 
 	const fetchBlogsData = async () => {
 		const res = await axios.get('/posts/');
+		console.log('===>', res.data);
 		setBlogs(res.data);
 	};
 
@@ -26,7 +27,12 @@ const Main = () => {
 				const { _id, title, author, createdAt } = post;
 				const formattedDate = createdAt && moment(createdAt).format('DD/MM/YYYY');
 				return (
-					<div key={_id} className={'card mb-4'} id={styles.card}>
+					<div
+						key={_id}
+						className={'card mb-4'}
+						id={styles.card}
+						data-testid='resolved'
+					>
 						<div className={'card-body'}>
 							<h4 className={'card-title'}>{title}</h4>
 							<p className={'card-subtitle text-muted mb-2'}>{formattedDate}</p>
